@@ -1,0 +1,101 @@
+import { all, call, put, takeLatest } from "redux-saga/effects";
+import { deleteEmpFailure, deleteEmpRequest, deleteEmpSuccess, 
+    fetchEmpDetailFailure, fetchEmpDetailRequest, fetchEmpDetailSuccess,
+     fetchEmpFailure, fetchEmpRequest, fetchEmpSuccess, 
+     registerEmpFailure, registerEmpRequest, registerEmpSuccess, 
+     updateEmpFailure, updateEmpRequest, updateEmpSuccess 
+    } from "./slice";
+import { ApiResponse, deleteEmpAPI, fetchEmpAPI, fetchEmpDetailAPI, registerEmpAPI, updateEmpAPI } from "./api";
+import axios, { AxiosResponse } from "axios";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { Emp } from "./types";
+
+// 공통 에러 처리
+function getErrorMessage(e: unknown, defaultMsg: string) {
+  if (axios.isAxiosError(e))
+    return e.response?.data?.message || defaultMsg;
+
+  return (e as any)?.message || defaultMsg;
+}
+// function* fetchEmpSaga(){
+//     try{
+//     const response:AxiosResponse<Emp[]>=yield call(fetchEmpAPI);
+//     yield put(fetchEmpSuccess(response.data));
+    
+//     }catch(e){
+//     yield put(fetchEmpFailure(getErrorMessage(e, "회원 목록 로딩 실패")));
+//     }
+// }
+function* fetchEmpSaga(){
+    try{
+    const response:AxiosResponse<ApiResponse<Emp[]>> =
+      yield call(fetchEmpAPI);
+
+    yield put(fetchEmpSuccess(response.data.data));
+
+    }catch(e){
+    yield put(fetchEmpFailure(getErrorMessage(e, "회원 목록 로딩 실패")));
+    }
+}
+// function* fetchEmpDetailSaga(action: PayloadAction<string>){
+//     try{
+//     const response:AxiosResponse<ApiResponse<Emp>>=yield call(fetchEmpDetailAPI,action.payload);
+//     yield put(fetchEmpDetailSuccess(response.data.data));
+//     }catch(e){
+//     yield put(fetchEmpDetailFailure(getErrorMessage(e, "회원 상세 로딩 실패")));
+//     }
+// }
+function* fetchEmpDetailSaga(action: PayloadAction<string>){
+    try{
+    console.log(action.payload);
+
+    const response:AxiosResponse<ApiResponse<Emp>>=
+      yield call(fetchEmpDetailAPI,action.payload);
+
+    console.log(response.data);
+
+    yield put(fetchEmpDetailSuccess(response.data.data));
+
+    }catch(e){
+    console.log(e);
+    yield put(fetchEmpDetailFailure(getErrorMessage(e, "회원 상세 로딩 실패")));
+    }
+}
+function* registerEmpSaga(action: PayloadAction<Emp>){
+    try{
+    yield call(registerEmpAPI,action.payload);
+    yield put(registerEmpSuccess());
+    }catch(e){
+    yield put(registerEmpFailure(getErrorMessage(e, "회원 가입 실패")));
+    }
+}
+function* updateEmpSaga(action: PayloadAction<{ empno: string; data: Emp }>){
+    try{
+    const { empno, data } = action.payload;
+    yield call(updateEmpAPI,empno,data);
+    yield put(updateEmpSuccess());
+    }catch(e){
+    yield put(updateEmpFailure(getErrorMessage(e, "회원 수정 실패")));
+    }
+}
+function* deleteEmpSaga(action: PayloadAction<string>){
+    try{
+    yield call(deleteEmpAPI,action.payload);
+    yield put(deleteEmpSuccess());
+
+    // ⭐ 삭제 후 바로 목록 다시 조회
+    yield put(fetchEmpRequest());
+
+    }catch(e){
+    yield put(deleteEmpFailure(getErrorMessage(e, "회원 삭제 실패")));
+    }
+}
+export function* watchEmpSaga(){
+    yield all( [
+      takeLatest( fetchEmpRequest.type, fetchEmpSaga),
+      takeLatest( fetchEmpDetailRequest.type, fetchEmpDetailSaga),
+      takeLatest( registerEmpRequest.type, registerEmpSaga),
+      takeLatest( updateEmpRequest.type, updateEmpSaga),
+      takeLatest( deleteEmpRequest.type, deleteEmpSaga),
+    ]);
+}

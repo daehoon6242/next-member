@@ -2,7 +2,7 @@ export interface Member{
     id:string;
     pw:string;
     addr:string;
-    tel:string
+    tel:string;
 };
 export interface Status{
     loading:boolean;

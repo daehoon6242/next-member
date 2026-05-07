@@ -1,6 +1,10 @@
+import { watchEmpSaga } from "@/features/emp/saga";
 import { watchMemberSaga } from "@/features/member/saga";
-import { all } from "redux-saga/effects";
+import { all, fork } from "redux-saga/effects";
 
 export function* rootSaga(){
-    yield all([watchMemberSaga()]);
+    yield all([
+        fork(watchMemberSaga),
+        fork(watchEmpSaga)
+    ]);
 }
