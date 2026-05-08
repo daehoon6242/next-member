@@ -2,10 +2,11 @@ import Detail from "@/components/member/Detail";
 
 const DetailPage = () => {
     return (
-        <div>
-        <p>회원상세페이지입니다.</p>
-        <Detail />
-        </div>
+        <main>
+            <h1 className="page-title">회원 상세 정보</h1>
+            <p className="page-desc">해당 회원의 상세 정보를 확인합니다.</p>
+            <Detail />
+        </main>
     );
 };
 

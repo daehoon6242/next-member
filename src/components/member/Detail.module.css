@@ -1,0 +1,31 @@
+.card {
+    width: 100%;
+    max-width: 700px;
+    background: white;
+    border: 2px solid #ffe0ea;
+    border-radius: 32px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px dashed #ffd6e0;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    width: 140px;
+    font-weight: 800;
+    color: #ff6f98;
+}
+
+.value {
+    flex: 1;
+    color: #5a4b55;
+}

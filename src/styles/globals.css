@@ -1,0 +1,262 @@
+/* @import "./variables.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(180deg, #fff7fb 0%, #fffdfd 100%);
+    color: var(--text);
+    font-family: "Pretendard", "Arial", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 24px;
+}
+
+.page-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: #ff6f98;
+    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+}
+
+.page-desc {
+    color: var(--sub);
+    font-size: 16px;
+    margin-bottom: 40px;
+} */
+
+
+@import "./variables.css";
+/* 👉 CSS 변수(색상, 공통 값 등) 불러오는 파일 */
+
+/* =========================
+   🎯 기본 리셋 (브라우저 초기화)
+   ========================= */
+
+* {
+  margin: 0;
+  /* 👉 기본 여백 제거 */
+  padding: 0;
+  /* 👉 기본 패딩 제거 */
+  box-sizing: border-box;
+  /* 👉 크기 계산 쉽게 (실무 필수) */
+}
+
+/* =========================
+   🌐 전체 화면 설정
+   ========================= */
+
+html,
+body {
+  width: 100%;
+  /* 👉 화면 전체 너비 사용 */
+  min-height: 100%;
+  /* 👉 최소 높이 100% */
+}
+
+/* =========================
+   🎀 전체 배경 + 기본 폰트
+   ========================= */
+
+body {
+  background:
+    linear-gradient(180deg,
+      #fff7fb 0%,
+      /* 👉 위쪽 연한 핑크 */
+      #fffdfd 100%
+      /* 👉 아래쪽 거의 흰색 */
+    );
+
+  font-family: "Pretendard", "Arial", sans-serif;
+  /* 👉 기본 폰트 (가독성 + 실무용) */
+
+  position: relative;
+  /* 👉 스티커 같은 fixed 요소 기준 */
+
+  overflow-x: hidden;
+  /* 👉 가로 스크롤 방지 */
+
+  color: #333;
+  /* 👉 기본 글자 색 */
+}
+
+/* =========================
+   📄 메인 컨텐츠 영역
+   ========================= */
+
+main {
+  max-width: 1100px;
+  /* 👉 콘텐츠 최대 폭 */
+  margin: 0 auto;
+  /* 👉 가운데 정렬 */
+  padding: 50px 24px;
+  /* 👉 위/아래 여백 */
+}
+
+/* =========================
+   🧁 페이지 제목 스타일
+   ========================= */
+
+.page-title {
+  font-size: 40px;
+  /* 👉 큰 제목 */
+  font-weight: 800;
+  /* 👉 굵게 */
+  color: #ff6fae;
+  /* 👉 핑크 포인트 컬러 */
+  letter-spacing: -0.03em;
+}
+
+/* =========================
+   📝 페이지 설명 텍스트
+   ========================= */
+
+.page-desc {
+  color: #888;
+  /* 👉 연한 회색 */
+  margin-bottom: 30px;
+  /* 👉 아래 여백 */
+  font-size: 16px;
+}
+
+/* =========================
+   🎀 스티커 이미지 공통 스타일
+   ========================= */
+
+.sticker {
+  position: fixed;
+  /* 👉 화면에 고정 (스크롤 따라감) */
+
+  width: 112px;
+  height: 112px;
+  /* 👉 기본 크기 (약 +25% 확대) */
+
+  z-index: 0;
+  /* 👉 뒤쪽 배경 느낌 */
+
+  pointer-events: none;
+  /* 👉 클릭 안되게 (UI 방해 방지) */
+
+  opacity: 0.92;
+  /* 👉 살짝 투명하게 */
+
+  animation: float 6.6s ease-in-out infinite;
+  /* 👉 둥실둥실 무한 애니메이션 */
+}
+
+/* =========================
+   📍 스티커 1 위치
+   ========================= */
+
+.sticker1 {
+  top: 160px;
+  /* 👉 위에서 조금 내려오기 */
+  left: 60px;
+  /* 👉 왼쪽에서 중앙 쪽으로 이동 */
+
+  width: 120px;
+  /* 👉 더 크게 강조 */
+  height: 140px;
+}
+
+/* =========================
+   📍 스티커 2 위치
+   ========================= */
+
+.sticker2 {
+  bottom: 140px;
+  /* 👉 아래쪽에서 위로 */
+  right: 140px;
+  /* 👉 오른쪽에서 중앙으로 */
+
+  width: 140px;
+  /* 👉 더 크게 강조 */
+  height: 140px;
+
+  animation-delay: 1.5s;
+  /* 👉 살짝 시간차로 움직임 */
+}
+
+/* =========================
+   📍 스티커 3 위치
+   ========================= */
+
+.sticker3 {
+  top: 30%;
+  /* 👉 세로 중앙 근처 */
+  right: 120px;
+  /* 👉 오른쪽 → 중앙 쪽 */
+
+  width: 150px;
+  height: 150px;
+
+  animation-delay: 3s;
+  
+  /* 👉 더 늦게 움직이게 */
+}
+
+/* =========================
+   🌊 둥실둥실 애니메이션
+   ========================= */
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    /* 👉 기본 상태 */
+  }
+
+  50% {
+    transform: translateY(-16px) scale(1.03);
+    /* 👉 위로 살짝 + 살짝 커짐 */
+  }
+}
+
+/* =========================
+   🧊 카드 UI (위로 올리기)
+   ========================= */
+
+.card,
+.wrapper {
+  position: relative;
+  z-index: 2;
+  /* 👉 스티커보다 위로 */
+
+  background: rgba(255, 255, 255, 0.8);
+  /* 👉 반투명 카드 */
+
+  backdrop-filter: blur(8px);
+  /* 👉 유리 느낌 (glassmorphism) */
+}
+
+/*=========================장난*/
+
+

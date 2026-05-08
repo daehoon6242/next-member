@@ -46,12 +46,12 @@ function* fetchEmpSaga(){
 //     }
 // }
 function* fetchEmpDetailSaga(action: PayloadAction<string>){
+     // action.payload에  id만 받기 때문에 <String>으로 받음
     try{
     console.log(action.payload);
 
     const response:AxiosResponse<ApiResponse<Emp>>=
       yield call(fetchEmpDetailAPI,action.payload);
-
     console.log(response.data);
 
     yield put(fetchEmpDetailSuccess(response.data.data));
@@ -61,14 +61,17 @@ function* fetchEmpDetailSaga(action: PayloadAction<string>){
     yield put(fetchEmpDetailFailure(getErrorMessage(e, "회원 상세 로딩 실패")));
     }
 }
+
 function* registerEmpSaga(action: PayloadAction<Emp>){
     try{
     yield call(registerEmpAPI,action.payload);
+        // action.payload api에서 객체emp를 받음
     yield put(registerEmpSuccess());
     }catch(e){
     yield put(registerEmpFailure(getErrorMessage(e, "회원 가입 실패")));
     }
 }
+
 function* updateEmpSaga(action: PayloadAction<{ empno: string; data: Emp }>){
     try{
     const { empno, data } = action.payload;

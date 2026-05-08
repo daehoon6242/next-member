@@ -1,15 +1,23 @@
 import Link from "next/link";
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
     return (
-        <nav>
-            <Link href="/">홈</Link> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-            <Link href="/member">회원관리</Link> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-            <Link href="/member/register">회원가입</Link> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-            <Link href="/product">제품관리</Link> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-            <Link href="/emp">직원목록</Link>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-            <Link href="/emp/register">직원가입</Link>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-        </nav>
+        <header className={styles.wrapper}>
+            <nav className={styles.nav}>
+                <div className={styles.logo}>
+                    🎀 Admin System
+                </div>
+                <div className={styles.menu}>
+                    <Link className={styles.link} href="/">홈</Link>
+                    <Link className={styles.link} href="/member">회원관리</Link>
+                    <Link className={styles.link} href="/member/register">회원가입</Link>
+                    <Link className={styles.link} href="/product">제품관리</Link>
+                    <Link className={styles.link} href="/emp">직원목록</Link>
+                    <Link className={styles.link} href="/emp/register">직원가입</Link>
+                </div>
+            </nav>
+        </header>
     );
 };
 
