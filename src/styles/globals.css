@@ -193,7 +193,7 @@ main {
 .sticker2 {
   bottom: 140px;
   /* 👉 아래쪽에서 위로 */
-  right: 140px;
+  right: 60px;
   /* 👉 오른쪽에서 중앙으로 */
 
   width: 140px;
@@ -211,7 +211,7 @@ main {
 .sticker3 {
   top: 30%;
   /* 👉 세로 중앙 근처 */
-  right: 120px;
+  right: 60px;
   /* 👉 오른쪽 → 중앙 쪽 */
 
   width: 150px;

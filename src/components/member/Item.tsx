@@ -39,9 +39,9 @@ const Item = ({ member }: { member: Member }) => {
                 <Link href={`/member/${member.id}`} className={styles.button}>
                     상세보기
                 </Link>
-                <Link href={`/member/${member.id}/edit`} className={styles.button}>
+                {/* <Link href={`/member/${member.id}/edit`} className={styles.button}>
                     수정
-                </Link>
+                </Link> */}
                 <button onClick={onDelete} className={`${styles.button} ${styles.delete}`}>
                     삭제
                 </button>
