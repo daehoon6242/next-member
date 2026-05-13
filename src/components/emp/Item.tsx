@@ -43,7 +43,7 @@ const Item = ({ emp }: { emp: Emp }) => {
                     수정
                 </Link>
                 <button 
-                // onClick={onDelete} 
+                onClick={onDelete} 
                 className={`${styles.button} ${styles.delete}`}>
                     삭제
                 </button>
