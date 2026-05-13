@@ -1,13 +1,12 @@
 "use client"
 
-import { deleteMemberRequest, fetchMemberDetailRequest } from "@/features/member/slice";
+import { deleteMemberRequest, fetchMemberDetailRequest, resetStatus } from "@/features/member/slice";
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styles from './Detail.module.css';
-import { resetStatus } from "@/features/emp/slice";
 
 const Detail = () => {
     const { id } = useParams<{ id: string }>();

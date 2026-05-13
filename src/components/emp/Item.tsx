@@ -1,13 +1,13 @@
 "use client"
 
 import { Emp } from "@/features/emp/types";
-import { deleteMemberRequest, resetStatus } from "@/features/member/slice"; 
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styles from './Item.module.css';
+import { deleteEmpRequest, resetStatus } from "@/features/emp/slice";
 
 const Item = ({ emp }: { emp: Emp }) => {
     const dispatch = useDispatch<AppDispatch>();
@@ -16,11 +16,11 @@ const Item = ({ emp }: { emp: Emp }) => {
     }), shallowEqual);
     const router = useRouter();
 
-    // const onDelete = () => {
-    //     if (confirm("정말 삭제할까요?")) {
-    //         dispatch(deleteMemberRequest(emp.empno)); // emp 전용 slice가 있다면 수정 필요
-    //     }
-    // };
+    const onDelete = () => {
+        if (confirm("정말 삭제할까요?")) {
+            dispatch(deleteEmpRequest(emp.empno)); // emp 전용 slice가 있다면 수정 필요
+        }
+    };
 
     useEffect(() => {
         if (deleteStatus.success) {
