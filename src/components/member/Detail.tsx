@@ -16,7 +16,6 @@ const Detail = () => {
         error: state.member.detailStatus.error,
         detail: state.member.detail
     }), shallowEqual);
-
     useEffect(() => {
         if (!id) return; 
         dispatch(fetchMemberDetailRequest(id));
