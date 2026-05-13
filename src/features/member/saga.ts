@@ -63,7 +63,7 @@ function* deleteMemberSaga(action: PayloadAction<string>){
     yield put(deleteMemberSuccess());
 
     // ⭐ 삭제 후 바로 목록 다시 조회
-    yield put(fetchMemberRequest());
+    // yield put(fetchMemberRequest());
 
     }catch(e){
     yield put(deleteMemberFailure(getErrorMessage(e, "회원 삭제 실패")));
