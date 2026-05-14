@@ -83,11 +83,9 @@
 
 "use client"
 
-// ✨ deleteEmpRequest와 resetStatus를 추가로 불러옵니다.
-import { fetchEmpDetailRequest, deleteEmpRequest, resetStatus } from "@/features/emp/slice";
+import { deleteEmpRequest, fetchEmpDetailRequest, resetStatus } from "@/features/emp/slice";
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
-// ✨ 페이지 이동을 위해 useRouter를 불러옵니다.
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
@@ -105,31 +103,26 @@ const Detail = () => {
         detail: state.emp.detail,
         deleteStatus: state.emp.deleteStatus // ✨ 추가
     }), shallowEqual);
-
-    // 컴포넌트 진입 시 상세 정보 불러오기
+    const router = useRouter();
+    const { deleteStatus } = useSelector((state: RootState) => ({
+            deleteStatus: state.emp.deleteStatus
+        }), shallowEqual);
+    const onDelete = () => {
+        if (!detail) return;
+        if (confirm("정말 삭제할까요?")) {
+            dispatch(deleteEmpRequest(detail.empno));
+        }};
+    
     useEffect(() => {
         if (!empno) return; 
-        dispatch(fetchEmpDetailRequest(empno));
-    }, [empno]);
-
-    // ✨ 삭제가 성공했을 때의 후속 처리 (알림 및 목록 페이지로 튕겨내기)
+        dispatch(fetchEmpDetailRequest(empno));}, [empno]);             
     useEffect(() => {
-        if (deleteStatus.success) {
-            alert("삭제가 완료되었습니다.");
-            dispatch(resetStatus("deleteStatus")); // 상태를 다시 초기화
-            router.push("/emp"); // 직원 목록 페이지로 이동
-        }
-    }, [deleteStatus.success]);
-
-    // ✨ 삭제 버튼을 눌렀을 때 실행될 함수
-    const handleDelete = () => {
-        if (window.confirm("정말 이 직원을 삭제하시겠습니까?")) {
-            if (detail) {
-                dispatch(deleteEmpRequest(detail.empno)); // 삭제 액션 발송
-            }
-        }
-    };
-
+                if (deleteStatus.success) {
+                    dispatch(resetStatus("deleteStatus"));
+                    router.push("/emp");
+                }
+            }, [deleteStatus.success]);
+    
     return (
         <div>
             {loading && <p>로딩중...</p>}
@@ -175,12 +168,7 @@ const Detail = () => {
                                 수정
                             </button>
                         </Link>
-                        {/* ✨ onClick={handleDelete} 가 추가된 진짜 작동하는 삭제 버튼 */}
-                        
-                        <button 
-                            onClick={handleDelete} 
-                            style={{ border: 'none', padding: '12px 18px', borderRadius: '999px', background: '#fff1f3', color: '#ff4d6d', fontWeight: '700', cursor: 'pointer' }}
-                        >
+                        <button onClick={onDelete} style={{ border: 'none', padding: '12px 18px', borderRadius: '999px', background: '#fff1f3', color: '#ff4d6d', fontWeight: '700', cursor: 'pointer' }}>
                             삭제
                         </button>
                     </div>

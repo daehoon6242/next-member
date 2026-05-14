@@ -1,13 +1,13 @@
 "use client"
 
 import { Emp } from "@/features/emp/types";
-import { deleteEmpRequest, resetStatus } from "@/features/emp/slice"; 
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styles from './Item.module.css';
+import { deleteEmpRequest, resetStatus } from "@/features/emp/slice";
 
 const Item = ({ emp }: { emp: Emp }) => {
     const dispatch = useDispatch<AppDispatch>();

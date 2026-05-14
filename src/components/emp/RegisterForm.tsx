@@ -51,7 +51,7 @@ const RegisterForm = () => {
                 </div>
                 <div className={styles.group}>
                     <label className={styles.label}>입사일</label>
-                    <input className={styles.input} name="hiredate" placeholder="입사일" onChange={onChange} value={form.hiredate} />
+                    <input className={styles.input} type="date" name="hiredate" placeholder="입사일" onChange={onChange} value={form.hiredate} />
                 </div>
                 <div className={styles.group}>
                     <label className={styles.label}>직업</label>

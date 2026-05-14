@@ -13,7 +13,7 @@ import { Member } from "./types";
 function getErrorMessage(e: unknown, defaultMsg: string) {
   if (axios.isAxiosError(e))
     return e.response?.data?.message || defaultMsg;
-
+   
   return (e as any)?.message || defaultMsg;
 }
 function* fetchMemberSaga(){
@@ -23,6 +23,14 @@ function* fetchMemberSaga(){
     }catch(e){
     yield put(fetchMemberFailure(getErrorMessage(e, "회원 목록 로딩 실패")));
     }
+// response = {
+//   data,       // 서버 응답 본문
+//   status,     // HTTP 상태코드
+//   statusText, // 상태 문자열
+//   headers,    // 응답 헤더
+//   config,     // 요청 설정
+//   request     // 실제 요청 객체
+// }    
 }
 function* fetchMemberDetailSaga(action: PayloadAction<string>){
     try{
@@ -55,7 +63,7 @@ function* deleteMemberSaga(action: PayloadAction<string>){
     yield put(deleteMemberSuccess());
 
     // ⭐ 삭제 후 바로 목록 다시 조회
-    yield put(fetchMemberRequest());
+    // yield put(fetchMemberRequest());
 
     }catch(e){
     yield put(deleteMemberFailure(getErrorMessage(e, "회원 삭제 실패")));
