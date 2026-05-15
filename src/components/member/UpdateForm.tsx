@@ -31,7 +31,7 @@ const UpdateForm = () => {
     useEffect(() => {
         if (updateStatus.success) {
             dispatch(resetStatus("updateStatus"));
-            router.push("/member");
+            router.push(`/member/${id}`);
         }
     }, [updateStatus.success]);
 

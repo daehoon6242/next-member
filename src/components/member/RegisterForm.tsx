@@ -35,7 +35,8 @@ const RegisterForm = () => {
     }, [success]);
 
     return (
-        <div className={styles.wrapper}>
+        // 💡 핵심 추가: width, maxWidth, margin을 설정하여 폼을 화면 가운데로 예쁘게 고정합니다.
+        <div className={styles.wrapper} style={{ width: '100%', maxWidth: '900px', margin: '0 auto' }}>
             <form onSubmit={onSubmit} className={styles.form}>
                 <div className={styles.group}>
                     <label className={styles.label}>아이디</label>

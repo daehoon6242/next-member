@@ -94,19 +94,15 @@ import styles from './Detail.module.css';
 const Detail = () => {
     const { empno } = useParams<{ empno: string }>();
     const dispatch = useDispatch<AppDispatch>();
-    const router = useRouter(); // ✨ 추가
+    const router = useRouter(); 
 
-    // ✨ deleteStatus (삭제 진행 상태)를 Redux에서 추가로 가져옵니다.
     const { loading, error, detail, deleteStatus } = useSelector((state: RootState) => ({
         loading: state.emp.detailStatus.loading,
         error: state.emp.detailStatus.error,
         detail: state.emp.detail,
-        deleteStatus: state.emp.deleteStatus // ✨ 추가
+        deleteStatus: state.emp.deleteStatus 
     }), shallowEqual);
-    const router = useRouter();
-    const { deleteStatus } = useSelector((state: RootState) => ({
-            deleteStatus: state.emp.deleteStatus
-        }), shallowEqual);
+    
     const onDelete = () => {
         if (!detail) return;
         if (confirm("정말 삭제할까요?")) {

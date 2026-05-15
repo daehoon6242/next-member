@@ -22,6 +22,7 @@ import "@/styles/globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Providers from "./providers";
+import KittyStickers from "@/components/layout/KittyStickers"; // 👈 방금 만든 스티커 담당 컴포넌트 불러오기
 
 export default function RootLayout({
   children,
@@ -31,11 +32,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-
-        {/* 🎀 떠다니는 스티커 이미지 */}
-        <img className="sticker sticker1" src="/doll1.png" alt="sticker1" />
-        <img className="sticker sticker2" src="/doll2.png" alt="sticker2" />
-        <img className="sticker sticker3" src="/doll3.png" alt="sticker3" />
+        
+        {/* 🎀 이 컴포넌트가 알아서 주소를 확인하고 스티커를 붙일지 말지 결정합니다 */}
+        <KittyStickers />
 
         <Navbar />
 
